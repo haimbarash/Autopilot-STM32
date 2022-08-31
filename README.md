@@ -1,7 +1,7 @@
 # Autopilot-STM32
 Full self-driving program including lane keeping and adaptive cruise control implementing on STM32
 
-Make sure to watch the video “autopilot_robot_in_action.mp4”, also available at: youtube
+Make sure to watch the video “autopilot_robot_in_action.mp4”, also available at: https://youtu.be/1QUbL_tQEA0
 
 The purpose of the project:
 
