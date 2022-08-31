@@ -1,7 +1,7 @@
 # Autopilot-STM32
 Full self-driving program including lane keeping and adaptive cruise control implementing on STM32
 
-Make sure to watch the video “”, also available at: youtube
+Make sure to watch the video “autopilot_robot_in_action.mp4”, also available at: youtube
 
 The purpose of the project:
 
@@ -46,3 +46,47 @@ Ki = 1
 Kd = 2
 3. Complete stop and pause of the robot for 5 seconds
 When the distance sensor used for the cruise control detects a reading that is too close, the engines stop. At the same time, since the measurement rate set for the sensors is 20 Hz, a counter is activated that counts the number of calls made while the engines are stopped, while the green LED is flashing. When the counter arrives for 100 (5 seconds at a frequency of 20 Hz) the program ends by using the exit command, otherwise the program continues and the counter resets. (Refer to lines 96-117 in stm32f10x_it.c).
+
+Technical Spec:
+
+Description of the robot components:
+
+
+|Component Name 								| Component description|
+|-----------------------|----------------------|
+|STM32VLDISCOVERY 							| development kit|
+|TB6612FNG Dual Motor Driver Carrier			| Motor Driver|
+|Breadboard Power Supply 5V/3.3V				| Power Supply and voltage stabilizer|
+|6-12V input 								| Power input jack|
+|6x AA 1.5V batteries 						| batteries house|
+|QTR-8RC Reflectance Sensor Array 			| A bar of optical light reflection sensors|
+|SHARP GP2Y0A21(10-80cm) or GP2D120(4-30cm) 	| Optical distance sensor|
+|Tamiya 70097 Twin-Motor Gearbox Kit 		| DC motors and gears|
+
+Electronic conections on P1 board:
+
+|Pin number (P1)		| Boad pin name	| Function Name	| Target	pin		| Target |
+|-----------------|---------------|---------------|-------------|--------|
+|18		| PA3 	| ADC1_IN3	| Sharp 2D120X		| Vout|
+|19		| PA4	| ADC1_IN4	| QTR-8RC (front)	| Sensor output 8|
+|20 		| PA5	| ADC1_IN5	| QTR-8RC (front)	| Sensor output 7|
+|21 		| PA6	| ADC1_IN6	| QTR-8RC (front)	| Sensor output 6|
+|22 		| PA7	| ADC1_IN7	| QTR-8RC (front)	| Sensor output 5|
+|23 		| PC4	| ADC1_IN14	| QTR-8RC (front)	| Sensor output 4|
+|24 		| PC5	| ADC1_IN15	| QTR-8RC (front)	| Sensor output 3|
+|25 		| PB0	| ADC1_IN8	| QTR-8RC (front)	| Sensor output 2|
+|26 		| PB1	| ADC1_IN9	| QTR-8RC (front)	| Sensor output 1|
+
+Electronic conections on P2 board:
+
+
+|Pin	number (P2)| Boad name	| Function name | Target name| Target pin| 
+|---------------|-----------|---------------|------------|-----------|
+|2		| PC6	| TIM3_CH1			| TB6612FNG Dual Motor Driver Carrier	| PWMA|
+|3		| PC7	| TIM3_CH2			| TB6612FNG Dual Motor Driver Carrier	| PWMB|
+|4		| PC8	| -					| -										|  -|
+|5		| PC9	| Digital output + green led	| TB6612FNG Dual Motor Driver Carrier	| STBY |
+|6		| PA8	| Digital output	| TB6612FNG Dual Motor Driver Carrier	| AIN1|
+|7		| PA9	| Digital output	| TB6612FNG Dual Motor Driver Carrier	| AIN2|
+|8		| PA10	| Digital output	| TB6612FNG Dual Motor Driver Carrier	| BIN1|
+|9		| PA11	| Digital output	| TB6612FNG Dual Motor Driver Carrier	| BIN2|
