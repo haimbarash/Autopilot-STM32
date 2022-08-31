@@ -46,7 +46,7 @@ void main(void)
 	NVIC_Init(&NVIC_InitStructure);
 	/* Time base configuration */
 	TIM_TimeBaseStructure.TIM_Period = 23999;
-	TIM_TimeBaseStructure.TIM_Prescaler = 49;//20HZ
+	TIM_TimeBaseStructure.TIM_Prescaler = 49;//20HZ = 0.05 seconds = 50 miliseconds
 	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
 	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
